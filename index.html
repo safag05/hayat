@@ -1,0 +1,528 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hikayemiz ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Dancing+Script:wght@500;600&display=swap');
+
+:root {
+  --paper: #fffaf0;
+  --ink: #49382e;
+  --accent: #9a7657;
+  --bg: #e9dfd2;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 28px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at top, #fff8ed, transparent 70%), var(--bg);
+  color: var(--ink);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.heading h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2.8rem, 6vw, 4rem);
+  font-weight: 500;
+  margin: 0;
+}
+
+.heading p {
+  font-size: 1.2rem;
+  font-style: italic;
+  margin: 5px 0;
+}
+
+/* BOOK */
+
+.book-container {
+  width: min(900px, 96vw);
+  perspective: 2200px;
+}
+
+.book {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 550px;
+  background: #cbb99f;
+  border-radius: 8px 12px 12px 8px;
+  box-shadow:
+    0 8px 0 #d7c6ae,
+    0 15px 0 #bba78c,
+    0 28px 55px #49382e40;
+  padding: 10px;
+  gap: 2px;
+}
+
+.book::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  bottom: 8px;
+  width: 12px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to right,
+    #b8a58c,
+    #e3d5c2,
+    #b8a58c
+  );
+  z-index: 5;
+  pointer-events: none;
+}
+
+.page {
+  position: relative;
+  background: var(--paper);
+  padding: 48px 35px 35px;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.left-page {
+  border-radius: 5px 0 0 5px;
+  box-shadow: inset -12px 0 18px -16px #49382e;
+}
+
+.right-page {
+  border-radius: 0 5px 5px 0;
+  box-shadow: inset 12px 0 18px -16px #49382e;
+}
+
+.page-number {
+  text-align: center;
+  color: #aa9278;
+  font-size: 0.95rem;
+  letter-spacing: 3px;
+  margin-bottom: 35px;
+}
+
+.page h2 {
+  font-family: 'Dancing Script', cursive;
+  color: var(--accent);
+  font-weight: 500;
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 0 0 25px;
+}
+
+.page .story {
+  font-size: 1.35rem;
+  line-height: 1.75;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.decoration {
+  text-align: center;
+  color: var(--accent);
+  font-size: 1.5rem;
+  margin-top: 28px;
+}
+
+/* 3D FLIPPING PAGE */
+
+.turning-page {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 50%;
+  width: calc(50% - 11px);
+  z-index: 10;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  display: none;
+}
+
+.turning-page.active {
+  display: block;
+}
+
+.turning-page.forward {
+  animation: flipForward 0.75s ease-in-out forwards;
+}
+
+.turning-page.backward {
+  left: 10px;
+  transform-origin: right center;
+  animation: flipBackward 0.75s ease-in-out forwards;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  padding: 38px 28px;
+  backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.face.front {
+  border-radius: 0 5px 5px 0;
+}
+
+.face.back {
+  transform: rotateY(180deg);
+  border-radius: 5px 0 0 5px;
+  box-shadow: inset -10px 0 15px -15px #49382e;
+}
+
+.turning-page.backward .face.back {
+  transform: rotateY(-180deg);
+}
+
+@keyframes flipForward {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(-180deg); }
+}
+
+@keyframes flipBackward {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(180deg); }
+}
+
+/* CONTROLS */
+
+.controls {
+  width: min(900px, 96vw);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 35px;
+}
+
+button {
+  border: none;
+  border-radius: 30px;
+  padding: 12px 28px;
+  color: white;
+  background: var(--accent);
+  font-family: inherit;
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover:not(:disabled) {
+  background: #78583e;
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.counter {
+  color: #8d7661;
+  font-size: 1.1rem;
+}
+
+.hint {
+  color: #8d7661;
+  font-style: italic;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.proposal .question {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.3rem;
+  color: var(--accent);
+  margin-top: 25px;
+}
+
+@media(max-width: 600px) {
+  .book {
+    min-height: 460px;
+    padding: 6px;
+  }
+
+  .page {
+    padding: 35px 17px 25px;
+  }
+
+  .page h2 {
+    font-size: 1.8rem;
+  }
+
+  .page .story {
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  .page-number {
+    font-size: 0.75rem;
+    margin-bottom: 25px;
+  }
+
+  .face {
+    padding: 30px 17px;
+  }
+
+  .face .page h2 {
+    font-size: 1.8rem;
+  }
+
+  .face .page .story {
+    font-size: 1.05rem;
+  }
+
+  button {
+    padding: 10px 16px;
+    font-size: 1rem;
+  }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  .turning-page.forward,
+  .turning-page.backward {
+    animation-duration: 0.01ms;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="heading">
+  <h1>Hikayemiz</h1>
+  <p>Birlikte yazmaya başladığımız hikaye... ♡</p>
+</header>
+
+<main class="book-container">
+  <div class="book">
+
+    <section class="page left-page" id="leftPage"></section>
+    <section class="page right-page" id="rightPage"></section>
+
+    <div class="turning-page" id="turningPage">
+      <div class="face front" id="frontFace"></div>
+      <div class="face back" id="backFace"></div>
+    </div>
+
+  </div>
+</main>
+
+<nav class="controls">
+  <button id="prevBtn" onclick="changePage(-1)">← Geri</button>
+  <span class="counter" id="counter"></span>
+  <button id="nextBtn" onclick="changePage(1)">İleri →</button>
+</nav>
+
+<p class="hint">Sayfayı çevir ve hikayemizi keşfet ♡</p>
+
+<script>
+
+// Teklif zamanı geldiğinde true yap.
+const proposalMode = false;
+
+const storyPages = [
+{
+title: "Nasıl Tanıştık?",
+text: "Her güzel hikayenin bir başlangıcı vardır.\n\nBizim hikayemiz de basit bir online tanışmayla başladı. İkimiz de bu tanışmanın bizi nerelere götüreceğini henüz bilmiyorduk."
+},
+{
+title: "İlk Mesajlarımız",
+text: "Birbirimizi daha yakından tanımak için mesajlaşmaya başladık.\n\nBasit bir merhaba ile başlayan sohbetlerimiz, zamanla birbirimizi tanımaya yönelik güzel konuşmalara dönüştü."
+},
+{
+title: "İlk Görüntülü Konuşmamız",
+text: "İlk kez görüntülü konuştuğumuz gün...\n\nBirbirimize genel sorular sorduk, hayatımızdan bahsettik ve karşılıklı olarak birbirimizi tanımaya başladık."
+},
+{
+title: "İkinci Görüntülü Konuşmamız",
+text: "Bu kez konuşmalarımız biraz daha derinleşti. Daha ciddi konulara girdik ve geleceğimiz hakkında konuştuk.\n\nRumeysa'nın Amerika'ya taşınmayı kabul etmesi 🥳 bizim için yeni adımların başlangıcı oldu."
+},
+{
+title: "Küçük Bir Hal Hatır",
+text: "Ertesi gün yine mesajlaştık.\n\nBüyük konuşmalar olmasa da birbirimizin nasıl olduğunu sormak, günümüzden küçük şeyler paylaşmak güzeldi."
+},
+{
+title: "Büyük Gün Belirlendi!",
+text: "Üçüncü görüntülü konuşmamızda artık önemli bir karar alındı.\n\nHafta sonu yüz yüze tanışmak için büyük gün belirlendi! Artık ikimiz de o günü beklemeye başlamıştık."
+},
+{
+title: "Küçük Detaylar",
+text: "Ertesi gün bu kez yemeklerden, neleri sevip neleri sevmediğimizden bahsettik.\n\nBirbirimizi tanımanın sadece büyük konulardan ibaret olmadığını, küçük detayların da ne kadar güzel olduğunu keşfediyorduk."
+},
+{
+title: "Büyük Buluşmadan Bir Gün Önce",
+text: "Safa, Amerika'dan Kanada'ya doğru yola çıktı.\n\nİkimiz de ertesi gün gerçekleşecek ilk yüz yüze buluşma için heyecanlıydık. Artık mesajların ve görüntülü konuşmaların ötesinde, gerçekten tanışma zamanı gelmişti!"
+},
+{
+title: "İlk Yüz Yüze Buluşmamız",
+text: "Ve sonunda beklenen gün geldi!\n\nBirlikte tam 15.000 adım attık ve yaklaşık 9 saat boyunca güzel vakit geçirdik. Birbirimizi daha yakından tanıdık ve güzel anılar biriktirdik.\n\nAncak buluşmanın sonunda, ilk izlenimimizin sonucu hakkında istemeden bir yanlış anlaşılma yaşandı."
+},
+{
+title: "İkinci Buluşmamız ❤️",
+text: "Bazen bir yanlış anlaşılmayı çözmek için yeniden bir araya gelmek gerekir.\n\nİkinci buluşmamızda her şeyi konuştuk ve yanlış anlaşılmayı giderdik. Yaklaşık 4 saat boyunca sohbet ettik.\n\nGünün sonunda yeniden görüşmek üzere, biraz da hüzünlü bir şekilde vedalaştık. ❤️"
+},
+{
+title: "Safa'nın Eve Dönüş Yolculuğu",
+text: "Safa, Kanada'dan Amerika'ya doğru dönüş yoluna çıktı.\n\nRumeysa ise babası ve abisiyle Safa hakkında konuşacaktı.\n\nSafa yolda, eve ulaşmayı ve gelecek güzel haberi bekliyordu!"
+},
+{
+title: "Aileyle İlk Tanışma",
+text: "Rumeysa, babasına ve abisine Safa'dan bahsetti.\n\nİlk başta şaşırmış olsalar da Safa'yı tanımaya açık olduklarını söylediler.\n\nKonuşmanın ardından Rumeysa heyecanla Safa'yı aradı ve yaşananları anlattı. O telefonun heyecanı ve mutluluğu gerçekten özeldi!"
+},
+{
+title: "Saatler Yetmiyor...",
+text: "Gün içerisinde saatlerce konuşuyoruz ama sanki yine de yetmiyor.\n\nBirbirimize anlatacaklarımız, soracaklarımız ve paylaşacaklarımız hiç bitmiyor gibi..."
+},
+{
+title: "Bir Hafta, Bir Ay Gibi",
+text: "Aslında henüz sadece bir haftadır konuşuyoruz.\n\nAma sanki bir aydır birbirimizi tanıyormuşuz gibi hissediyoruz.\n\nZaman bazen takvimde yazandan çok daha farklı hissettirebiliyor."
+},
+{
+title: "Devam Edecek...",
+text: "Bu hikayenin henüz başındayız.\n\nÖnümüzde bizi bekleyen nice güzel anılar, yeni başlangıçlar ve birlikte keşfedeceğimiz sayfalar var.\n\nBakalım hikayemizin bir sonraki sayfasında bizi neler bekliyor...\n\nİyi ki yollarımız kesişmiş. ❤️"
+}
+];
+
+const proposalPage = {
+title: "Kalbimden Bir Soru",
+text: "Nasıl tanıştığımızı, konuşmalarımızı ve birlikte geçirdiğimiz güzel anları düşündüğümde, yollarımızın kesişmiş olmasına çok şükrediyorum.\n\nSeninle bu yolculuğa devam etmek, sevgi, saygı, dürüstlük ve inanç üzerine kurulu güzel bir yuva inşa etmek istiyorum.\n\nHayatın geri kalanında da birlikte yeni sayfalar yazmak istiyorum.",
+question: "Benimle evlenir misin? ❤️"
+};
+
+const pages = proposalMode
+  ? [...storyPages.slice(0, -1), proposalPage]
+  : storyPages;
+
+let spread = 0;
+let busy = false;
+
+const leftPage = document.getElementById("leftPage");
+const rightPage = document.getElementById("rightPage");
+const turningPage = document.getElementById("turningPage");
+const frontFace = document.getElementById("frontFace");
+const backFace = document.getElementById("backFace");
+const counter = document.getElementById("counter");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+function makePage(data, number) {
+  if (!data) {
+    return `<div class="page-number">♡</div>`;
+  }
+
+  return `
+    <div class="page-number">♡ ${String(number).padStart(2, "0")} ♡</div>
+    <h2>${data.title}</h2>
+    <div class="story">${data.text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>")}</div>
+    ${data.question ? `<div class="question">${data.question}</div>` : ""}
+    <div class="decoration">♡</div>
+  `;
+}
+
+function render() {
+  const leftIndex = spread * 2;
+  const rightIndex = leftIndex + 1;
+
+  leftPage.innerHTML = makePage(pages[leftIndex], leftIndex + 1);
+  rightPage.innerHTML = makePage(pages[rightIndex], rightIndex + 1);
+
+  leftPage.classList.toggle("proposal", Boolean(pages[leftIndex]?.question));
+  rightPage.classList.toggle("proposal", Boolean(pages[rightIndex]?.question));
+
+  counter.textContent =
+    `${leftIndex + 1}–${Math.min(rightIndex + 1, pages.length)} / ${pages.length}`;
+
+  prevBtn.disabled = spread === 0;
+  nextBtn.disabled = rightIndex >= pages.length - 1;
+}
+
+function changePage(direction) {
+  if (busy) return;
+
+  const nextSpread = spread + direction;
+  const maxSpread = Math.floor((pages.length - 1) / 2);
+
+  if (nextSpread < 0 || nextSpread > maxSpread) return;
+
+  busy = true;
+
+  if (direction === 1) {
+    // Right page turns to reveal the next left page.
+    frontFace.innerHTML = makePage(
+      pages[spread * 2 + 1],
+      spread * 2 + 2
+    );
+
+    backFace.innerHTML = makePage(
+      pages[(spread + 1) * 2],
+      (spread + 1) * 2 + 1
+    );
+
+    turningPage.className = "turning-page active forward";
+
+  } else {
+    // Left page turns backward to reveal the previous right page.
+    frontFace.innerHTML = makePage(
+      pages[spread * 2],
+      spread * 2 + 1
+    );
+
+    backFace.innerHTML = makePage(
+      pages[(spread - 1) * 2 + 1],
+      spread * 2
+    );
+
+    turningPage.className = "turning-page active backward";
+  }
+
+  setTimeout(() => {
+    spread = nextSpread;
+    render();
+
+    turningPage.className = "turning-page";
+    busy = false;
+  }, 760);
+}
+
+// Keyboard navigation
+document.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowRight") changePage(1);
+  if (event.key === "ArrowLeft") changePage(-1);
+});
+
+// Mobile swipe
+let touchStartX = 0;
+
+document.querySelector(".book").addEventListener("touchstart", (event) => {
+  touchStartX = event.changedTouches[0].screenX;
+}, { passive: true });
+
+document.querySelector(".book").addEventListener("touchend", (event) => {
+  const diff = event.changedTouches[0].screenX - touchStartX;
+
+  if (Math.abs(diff) > 60) {
+    changePage(diff < 0 ? 1 : -1);
+  }
+}, { passive: true });
+
+render();
+
+</script>
+</body>
+</html>
