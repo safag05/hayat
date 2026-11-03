@@ -431,33 +431,44 @@
     const totalSpreads = Math.ceil(pages.length / 2);
 
     function makePage(data, number) {
-      if (!data) {
-        return `<div class="page-number">♡</div>`;
-      }
+function makePage(data, number) {
+  if (!data) {
+    return `<div class="page-number">♡</div>`;
+  }
 
-      if (data.cover) {
-        return `
-          <div class="cover-content">
-            <div class="cover-hearts">♥ ♥ ♥</div>
-            <div class="cover-name">${data.name}</div>
-          </div>
-        `;
-      }
+  // İlk iki isim sayfası
+  if (data.cover) {
+    return `
+      <div class="cover-content">
+        <div class="cover-hearts">♥ ♥ ♥</div>
+        <div class="cover-name">${data.name}</div>
+      </div>
+    `;
+  }
 
-      const safeText = data.text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/\n/g, "<br>");
+  // Hikâye sayfalarının eski tasarımı
+  const safeText = data.text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\n/g, "<br>");
 
-      return `
-        <div class="page-number">♡ ${String(number).padStart(2, "0")} ♡</div>
-        <h2>${data.title}</h2>
-        <div class="story">${safeText}</div>
-        ${data.question ? `<div class="question">${data.question}</div>` : ""}
-        <div class="decoration">♡</div>
-      `;
-    }
+  return `
+    <div class="page-number">♡ ${String(number).padStart(2, "0")} ♡</div>
+
+    <h2>${data.title}</h2>
+
+    <div class="story">
+      ${safeText}
+    </div>
+
+    ${data.question ? `
+      <div class="question">${data.question}</div>
+    ` : ""}
+
+    <div class="decoration">♡</div>
+  `;
+}
 
     function render() {
       const leftIndex = spread * 2;
