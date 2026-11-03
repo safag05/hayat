@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rumeysa & Safa - Hikâyemiz</title>
+<title>Rumeysa & Safa | Hikâyemiz</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +30,7 @@ body {
 
 .heading {
   text-align: center;
-  margin: 25px 0;
+  margin: 24px 0;
 }
 
 .heading h1 {
@@ -58,8 +58,8 @@ body {
   display: flex;
   width: 100%;
   aspect-ratio: 1.5 / 1;
-  min-height: 440px;
-  max-height: 650px;
+  min-height: 480px;
+  max-height: 680px;
   background: #f8f0e4;
   border-radius: 8px;
   box-shadow:
@@ -89,10 +89,11 @@ body {
 .page {
   width: 50%;
   height: 100%;
-  padding: clamp(25px, 5vw, 65px);
+  padding: clamp(22px, 4vw, 55px);
   position: relative;
   overflow: hidden;
   background:
+    radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.5), transparent 75%),
     linear-gradient(90deg, rgba(120, 85, 55, 0.05), transparent 12%),
     #fffaf1;
   box-shadow: inset 0 0 25px rgba(120, 85, 55, 0.06);
@@ -106,56 +107,12 @@ body {
 .right-page {
   border-radius: 0 8px 8px 0;
   background:
+    radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.5), transparent 75%),
     linear-gradient(270deg, rgba(120, 85, 55, 0.05), transparent 12%),
     #fffaf1;
 }
 
-/* Hikâye sayfalarının eski stili */
-
-.page h2 {
-  font-size: clamp(1.5rem, 3vw, 2.3rem);
-  font-weight: 600;
-  color: #795844;
-  text-align: center;
-  margin: 15px 0 25px;
-}
-
-.story {
-  font-size: clamp(1.05rem, 1.8vw, 1.4rem);
-  line-height: 1.8;
-  text-align: center;
-  color: #55463b;
-}
-
-.page-number {
-  position: absolute;
-  bottom: 18px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: #b49a7e;
-  font-size: 1rem;
-}
-
-.decoration {
-  position: absolute;
-  bottom: 45px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 1.3rem;
-  color: #b58c75;
-}
-
-.question {
-  margin-top: 25px;
-  font-family: 'Dancing Script', cursive;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  text-align: center;
-  color: #9b6b62;
-}
-
-/* İlk iki isim sayfası */
+/* İsim sayfaları */
 
 .cover-content {
   height: 100%;
@@ -177,6 +134,137 @@ body {
   font-family: 'Dancing Script', cursive;
   font-size: clamp(2.5rem, 5vw, 4rem);
   color: #49382e;
+}
+
+/* Vintage hikâye sayfası */
+
+.story-page {
+  height: 100%;
+  min-height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 25px 20px 35px;
+  border: 1px solid rgba(177, 145, 105, 0.35);
+}
+
+/* Köşe süsleri */
+
+.story-page::before,
+.story-page::after {
+  content: "❧";
+  position: absolute;
+  color: #b99a72;
+  font-size: 25px;
+  opacity: 0.7;
+}
+
+.story-page::before {
+  top: 4px;
+  left: 7px;
+}
+
+.story-page::after {
+  bottom: 4px;
+  right: 7px;
+  transform: rotate(180deg);
+}
+
+.corner {
+  position: absolute;
+  color: #b99a72;
+  font-size: 22px;
+  opacity: 0.65;
+}
+
+.corner.top-right {
+  top: 4px;
+  right: 7px;
+  transform: rotate(90deg);
+}
+
+.corner.bottom-left {
+  bottom: 4px;
+  left: 7px;
+  transform: rotate(-90deg);
+}
+
+.story-emoji {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  margin-bottom: 12px;
+  filter: drop-shadow(0 2px 2px rgba(80, 50, 30, 0.12));
+}
+
+.story-title {
+  font-size: clamp(1.45rem, 2.8vw, 2.2rem);
+  line-height: 1.15;
+  font-weight: 600;
+  color: #795844;
+  margin: 0 0 15px;
+}
+
+.title-divider {
+  width: 65%;
+  max-width: 210px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto 22px;
+  color: #b18d67;
+}
+
+.title-divider::before,
+.title-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(to right, transparent, #b18d67);
+}
+
+.title-divider::after {
+  background: linear-gradient(to left, transparent, #b18d67);
+}
+
+.title-divider span {
+  font-size: 13px;
+}
+
+.story-text {
+  font-size: clamp(1.05rem, 1.75vw, 1.35rem);
+  line-height: 1.75;
+  color: #55463b;
+  max-width: 95%;
+  white-space: normal;
+}
+
+.story-bottom {
+  margin-top: 18px;
+  font-size: 1.2rem;
+  color: #b18d67;
+}
+
+.page-number {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  font-size: 0.95rem;
+  color: #b49a7e;
+  letter-spacing: 2px;
+}
+
+/* Son sayfa */
+
+.final-page .story-emoji {
+  font-size: 2.8rem;
+}
+
+.final-page .story-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2rem, 4vw, 3rem);
 }
 
 /* 3D sayfa çevirme */
@@ -216,7 +304,7 @@ body {
   inset: 0;
   backface-visibility: hidden;
   overflow: hidden;
-  padding: clamp(25px, 5vw, 65px);
+  padding: clamp(22px, 4vw, 55px);
   background: #fffaf1;
   box-shadow: 0 0 18px rgba(50, 30, 15, 0.18);
 }
@@ -230,7 +318,7 @@ body {
   border-radius: 8px 0 0 8px;
 }
 
-/* Kontroller */
+/* Butonlar */
 
 .controls {
   display: flex;
@@ -286,22 +374,40 @@ button:disabled {
   }
 
   .book {
-    min-height: 470px;
+    min-height: 510px;
     aspect-ratio: 0.85 / 1;
   }
 
   .page {
-    padding: 22px 15px;
+    padding: 12px 9px;
   }
 
-  .story {
-    font-size: 1rem;
-    line-height: 1.6;
+  .story-page {
+    padding: 20px 7px 35px;
   }
 
-  .page h2 {
-    font-size: 1.35rem;
-    margin: 12px 0 18px;
+  .story-title {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+  }
+
+  .story-text {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    max-width: 100%;
+  }
+
+  .story-emoji {
+    font-size: 1.6rem;
+    margin-bottom: 9px;
+  }
+
+  .title-divider {
+    margin-bottom: 14px;
+  }
+
+  .story-bottom {
+    margin-top: 10px;
   }
 
   .controls {
@@ -315,7 +421,7 @@ button:disabled {
 
   .flip-front,
   .flip-back {
-    padding: 22px 15px;
+    padding: 12px 9px;
   }
 }
 </style>
@@ -344,83 +450,118 @@ button:disabled {
 <div class="footer">Her güzel hikâye bir adımla başlar... ♡</div>
 
 <script>
-/* Teklif sayfasını açmak istersen false yerine true yaz */
+
+/* Teklif sayfasını açmak için false yerine true yaz */
 const proposalMode = false;
 
-/* İlk iki sayfa */
+/* İlk iki isim sayfası */
 
 const coverPages = [
   { cover: true, name: "Rumeysa" },
   { cover: true, name: "Safa" }
 ];
 
-/* Hikâyemiz */
+/* Hikâyemiz - Her sayfanın kendine özel emojisi var */
 
 const storyPages = [
+
   {
     title: "Nasıl Tanıştık?",
+    emoji: "♡",
     text: "Bazen hayatımıza kimin gireceğini, nerede ve nasıl tanışacağımızı hiç bilemeyiz. Bizim hikâyemiz de böyle başladı. Birbirimizi tanımak için atılan küçük bir adım, zamanla güzel bir hikâyenin başlangıcına dönüştü."
   },
+
   {
     title: "İlk Mesajlarımız",
+    emoji: "💌",
     text: "Birbirimizi daha yakından tanımak için mesajlaşmaya başladık. Günlük hayatımızdan, düşüncelerimizden ve merak ettiklerimizden konuşmaya başladık. Her mesaj, birbirimizi biraz daha tanımamıza vesile oldu."
   },
+
   {
     title: "İlk Görüntülü Konuşmamız",
+    emoji: "📱",
     text: "İlk kez görüntülü konuştuğumuzda genel sorularla birbirimizi tanımaya çalıştık. Biraz heyecan, biraz merak... Ama en önemlisi, sohbetin doğal bir şekilde ilerlemesiydi."
   },
+
   {
     title: "İkinci Görüntülü Konuşmamız",
+    emoji: "✨",
     text: "Bu kez konuşmamız biraz daha farklıydı. Daha ciddi konulara, geleceğe ve evlilikle ilgili düşüncelerimize değindik. Rumeysa'nın Amerika'ya taşınmayı kabul etmesi 🥳, hikâyemizde yeni bir sayfanın açılmasına vesile oldu."
   },
+
   {
     title: "Küçük Bir Hal Hatır",
+    emoji: "🌷",
     text: "Ertesi gün yine birbirimize yazdık. Büyük konular konuşmadan, sadece günümüzün nasıl geçtiğini sorduk. Bazen küçük bir mesaj bile insanın yüzünde güzel bir gülümseme oluşturabiliyor."
   },
+
   {
     title: "Büyük Gün Belirlendi!",
+    emoji: "🗓️",
     text: "Üçüncü görüntülü konuşmamızda artık yüz yüze tanışmaya karar verdik. Hafta sonu buluşacaktık. Artık birbirimizi sadece ekranın arkasından değil, gerçek hayatta da tanıma zamanı gelmişti."
   },
+
   {
     title: "Küçük Detaylar",
+    emoji: "🌸",
     text: "Buluşmadan önceki günlerde yemeklerden, sevdiğimiz şeylerden ve küçük tercihlerimizden konuştuk. Birbirimizi tanımanın en güzel tarafı, bu küçük detayları da öğrenmekti."
   },
+
   {
     title: "Büyük Buluşmadan Bir Gün Önce",
+    emoji: "🚗",
     text: "Heyecan giderek artıyordu. Safa, Rumeysa'yla buluşmak için Amerika'dan Kanada'ya doğru yola çıktı. İkimiz de ertesi günün nasıl geçeceğini merak ediyor, güzel bir buluşma olmasını umuyorduk."
   },
+
   {
     title: "İlk Yüz Yüze Buluşmamız",
+    emoji: "❤️",
     text: "Sonunda beklenen gün geldi. Birlikte yaklaşık 9 saat geçirdik ve tam 15.000 adım yürüdük! Güzel sohbetler ettik, vakit geçirdik ve birbirimizi daha yakından tanıdık. Yine de buluşmanın sonunda küçük bir yanlış anlaşılma yaşandı. Bazen insanın aklından geçenle karşı tarafa hissettirdiği aynı olmayabiliyor."
   },
+
   {
-    title: "İkinci Buluşmamız ❤️",
+    title: "İkinci Buluşmamız",
+    emoji: "🫶",
     text: "İkinci kez bir araya geldiğimizde bu kez yanlış anlaşılmayı açıklığa kavuşturduk. Yaklaşık 4 saat boyunca konuştuk. Birbirimizi daha iyi anladık. Ayrılma vakti geldiğinde ikimiz için de biraz hüzünlüydü ama yeniden görüşme niyetiyle vedalaştık. ❤️"
   },
+
   {
     title: "Safa'nın Eve Dönüş Yolculuğu",
+    emoji: "🛣️",
     text: "Safa, Kanada'dan Amerika'ya doğru yola çıktı. Rumeysa ise babasıyla ve abisiyle Safa hakkında konuşacaktı. Yol boyunca Safa'nın aklında tek bir şey vardı: Acaba nasıl geçmişti? Güzel bir haber almayı umut ederek eve doğru ilerledi."
   },
+
   {
     title: "Aileyle İlk Paylaşım",
+    emoji: "🏡",
     text: "Rumeysa, babasına ve abisine Safa'dan bahsetti. Onlar için beklenmedik bir haberdi ama onu tanımaya açık olduklarını söylediler. Rumeysa heyecanla Safa'yı arayıp olanları anlattı. Bu haber ikisi için de yeni ve güzel bir adımdı."
   },
+
   {
     title: "Saatler Yetmiyor...",
+    emoji: "⏳",
     text: "Gün içinde saatlerce konuşsak bile sanki hiç yetmiyor. Bazen anlatacaklarımız bitmiyor, bazen de sadece konuşuyor olmak bile güzel geliyor. Birbirimizi tanıdıkça sohbetlerimiz de daha anlamlı hale geliyor."
   },
+
   {
     title: "Bir Hafta, Bir Ay Gibi",
+    emoji: "🌙",
     text: "Aslında henüz bir haftadır konuşuyoruz. Ama bazen öyle geliyor ki sanki bir aydır birbirimizi tanıyoruz. Zamanın nasıl geçtiğini anlamadan, her gün yeni bir şey öğrenerek ilerliyoruz."
   },
+
   {
     title: "Devam Edecek...",
+    emoji: "♾️",
     text: "Bu hikâyenin daha anlatılacak çok sayfası var. Önümüzde bizi nelerin beklediğini henüz bilmiyoruz. Ama güzel niyetlerle, sabırla ve birbirimizi daha iyi tanıyarak ilerlemeye devam ediyoruz.\n\nBakalım bir sonraki sayfada bizi neler bekliyor... ♡"
   }
+
 ];
+
+/* İleride kullanılabilecek teklif sayfası */
 
 const proposalPage = {
   title: "Benimle Evlenir Misin?",
+  emoji: "💍",
   text: "Birlikte başladığımız bu güzel hikâyenin geri kalanını da seninle yazmak istiyorum.\n\nHayatın tüm güzel ve zor günlerinde yanında olmak, birlikte gülmek, birlikte büyümek ve bir ömür aynı yolda yürümek istiyorum.",
   question: "Benimle evlenir misin, Rumeysa? ❤️"
 };
@@ -441,9 +582,10 @@ const book = document.getElementById("book");
 
 const totalSpreads = Math.ceil(pages.length / 2);
 
-/* Sayfa içeriğini oluştur */
+/* Sayfa HTML'i */
 
 function makePage(data, number) {
+
   if (!data) {
     return `<div class="page-number">♡</div>`;
   }
@@ -458,23 +600,45 @@ function makePage(data, number) {
     `;
   }
 
-  /* Diğer bütün hikâye sayfaları */
   const safeText = data.text
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/\n/g, "<br>");
 
+  const isFinal = data.title === "Devam Edecek...";
+
   return `
-    <div class="page-number">♡ ${String(number).padStart(2, "0")} ♡</div>
-    <h2>${data.title}</h2>
-    <div class="story">${safeText}</div>
-    ${data.question ? `<div class="question">${data.question}</div>` : ""}
-    <div class="decoration">♡</div>
+    <div class="story-page ${isFinal ? "final-page" : ""}">
+
+      <span class="corner top-right">❧</span>
+      <span class="corner bottom-left">❧</span>
+
+      <div class="story-emoji">${data.emoji || "♡"}</div>
+
+      <h2 class="story-title">${data.title}</h2>
+
+      <div class="title-divider">
+        <span>✦</span>
+      </div>
+
+      <div class="story-text">${safeText}</div>
+
+      ${data.question ? `
+        <div class="question">${data.question}</div>
+      ` : ""}
+
+      <div class="story-bottom">❦</div>
+
+      <div class="page-number">
+        — ${String(number).padStart(2, "0")} —
+      </div>
+
+    </div>
   `;
 }
 
-/* Kitabı ekrana çiz */
+/* Kitabı göster */
 
 function render() {
   const leftIndex = spread * 2;
@@ -489,9 +653,10 @@ function render() {
   nextBtn.disabled = spread >= totalSpreads - 1 || isAnimating;
 }
 
-/* İleri sayfa çevirme */
+/* İleri sayfa */
 
 function nextSpread() {
+
   if (spread >= totalSpreads - 1 || isAnimating) return;
 
   isAnimating = true;
@@ -513,6 +678,7 @@ function nextSpread() {
   `;
 
   book.appendChild(flip);
+
   rightPage.innerHTML = makePage(nextRight, (spread + 1) * 2 + 2);
 
   requestAnimationFrame(() => {
@@ -529,9 +695,10 @@ function nextSpread() {
   }, 850);
 }
 
-/* Geri sayfa çevirme */
+/* Geri sayfa */
 
 function previousSpread() {
+
   if (spread <= 0 || isAnimating) return;
 
   isAnimating = true;
@@ -553,6 +720,7 @@ function previousSpread() {
   `;
 
   book.appendChild(flip);
+
   leftPage.innerHTML = makePage(previousLeft, (spread - 1) * 2 + 1);
 
   requestAnimationFrame(() => {
@@ -569,14 +737,14 @@ function previousSpread() {
   }, 850);
 }
 
-/* Klavye desteği */
+/* Bilgisayar klavye kontrolleri */
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowRight") nextSpread();
   if (event.key === "ArrowLeft") previousSpread();
 });
 
-/* Telefonlarda kaydırma desteği */
+/* Telefon kaydırma kontrolleri */
 
 let touchStartX = 0;
 
@@ -594,7 +762,7 @@ book.addEventListener("touchend", (event) => {
   }
 }, { passive: true });
 
-/* İlk sayfaları göster */
+/* Başlangıç */
 
 render();
 
